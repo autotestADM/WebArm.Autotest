@@ -1,10 +1,7 @@
 import org.junit.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
-
 import static org.junit.Assert.fail;
 
 public class FirstTest {
