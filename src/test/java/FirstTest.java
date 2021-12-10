@@ -15,7 +15,7 @@ public class FirstTest {
 
     @Before
     public void setUp() throws Exception {
-        System.setProperty("webdriver.chrome.driver", "C:\\dev\\Tools\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "tools\\chromedriver.exe");
         driver = new ChromeDriver();
         baseUrl = "https://www.google.com/";
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
