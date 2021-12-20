@@ -1,4 +1,4 @@
-package Sandbox;
+package sandbox.tests;
 
 import org.junit.Test;
 
@@ -7,8 +7,8 @@ public class DeleteDocument extends TestBase {
 
     @Test
     public void testDeleteDocument() {
-        gotoRegisterOfDocuments();
-        deleteDocument();
+        app.gotoRegisterOfDocuments();
+        app.deleteDocument();
     }
 
 }

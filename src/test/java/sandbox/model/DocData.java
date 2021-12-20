@@ -1,4 +1,4 @@
-package Sandbox;
+package sandbox.model;
 
 public record DocData(String typeOfDocument, String numberOfDdocument) {
 }
