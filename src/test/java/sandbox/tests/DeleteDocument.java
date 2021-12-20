@@ -7,8 +7,8 @@ public class DeleteDocument extends TestBase {
 
     @Test
     public void testDeleteDocument() {
-        app.gotoRegisterOfDocuments();
-        app.deleteDocument();
+        app.getNavigationHelper().gotoRegisterOfDocuments();
+        app.getDocumentHelper().deleteDocument();
     }
 
 }

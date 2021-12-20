@@ -8,11 +8,11 @@ public class CreationDocument extends TestBase {
 
     @Test
     public void testCreationDocument() {
-        app.gotoRegisterOfDocuments();
-        app.initDocumentCreation();
-        app.fillDocumentForm(new DocData("Отклонения (инициативы)", "Тест1"));
-        app.submitDocumentCreation();
-        app.returnRegisterofDocuments();
+        app.getNavigationHelper().gotoRegisterOfDocuments();
+        app.getDocumentHelper().initDocumentCreation();
+        app.getDocumentHelper().fillDocumentForm(new DocData("Отклонения (инициативы)", "Тест1"));
+        app.getDocumentHelper().submitDocumentCreation();
+        app.getDocumentHelper().returnRegisterofDocuments();
     }
 
 }
