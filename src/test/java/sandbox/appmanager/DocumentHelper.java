@@ -12,29 +12,41 @@ public class DocumentHelper {
         this.webd = webd;
     }
 
-    public void returnRegisterofDocuments() {
-        webd.findElement(By.linkText("Назад")).click();
+    public void returnRegisterOfDocuments() {
+        click(By.linkText("Назад"));
     }
 
     public void submitDocumentCreation() {
-        webd.findElement(By.xpath("//button[@type='submit']")).click();
+        click(By.xpath("//button[@type ='submit']"));
+    }
+
+    private void click(By locator) {
+        webd.findElement(locator).click();
     }
 
     public void fillDocumentForm(DocData docData) {
-        webd.findElement(By.id("info_document_edit_docno")).click();
-        webd.findElement(By.id("info_document_edit_docno")).clear();
-        webd.findElement(By.id("info_document_edit_docno")).sendKeys(docData.numberOfDdocument());
-        webd.findElement(By.id("info_document_edit_doctype_id")).click();
-        new Select(webd.findElement(By.id("info_document_edit_doctype_id"))).selectByVisibleText(docData.typeOfDocument());
+        type(By.id("info_document_edit_docno"), docData.numberOfDocument());
+        dropDown(By.id("info_document_edit_doctype_id"), docData.typeOfDocument());
+    }
+
+    private void dropDown(By locator, String text) {
+        click(locator);
+        new Select(webd.findElement(locator)).selectByVisibleText(text);
+    }
+
+    private void type(By locator, String text) {
+        click(locator);
+        webd.findElement(locator).clear();
+        webd.findElement(locator).sendKeys(text);
     }
 
     public void initDocumentCreation() {
-        webd.findElement(By.linkText("Создать")).click();
+        click(By.linkText("Создать"));
     }
 
     public void deleteDocument() {
-        webd.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)=" +
-                "'ТЕСТ Сотников Александр Игоревич'])[2]/following::*[name()='svg'][2]")).click();
-        webd.findElement(By.id("deletebtn")).click();
+        click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)=" +
+                "'ТЕСТ Сотников Александр Игоревич'])[2]/following::*[name()='svg'][2]"));
+        click(By.id("deletebtn"));
     }
 }

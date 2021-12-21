@@ -12,7 +12,7 @@ public class CreationDocument extends TestBase {
         app.getDocumentHelper().initDocumentCreation();
         app.getDocumentHelper().fillDocumentForm(new DocData("Отклонения (инициативы)", "Тест1"));
         app.getDocumentHelper().submitDocumentCreation();
-        app.getDocumentHelper().returnRegisterofDocuments();
+        app.getDocumentHelper().returnRegisterOfDocuments();
     }
 
 }

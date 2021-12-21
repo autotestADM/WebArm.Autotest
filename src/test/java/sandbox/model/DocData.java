@@ -1,4 +1,4 @@
 package sandbox.model;
 
-public record DocData(String typeOfDocument, String numberOfDdocument) {
+public record DocData(String typeOfDocument, String numberOfDocument) {
 }
