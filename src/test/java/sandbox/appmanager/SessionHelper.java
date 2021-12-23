@@ -2,6 +2,11 @@ package sandbox.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class SessionHelper extends HelperBase{
 
@@ -12,7 +17,8 @@ public class SessionHelper extends HelperBase{
     public void chooseDB(String DB) {
         click(By.id("header-title"));
         click(By.id("header-db"));
-        click(By.linkText(DB));
+//        click(By.xpath("//li[@id='header-db']/span"));
+//        click(By.linkText(DB));
     }
 
     public void login(String user, String password) {

@@ -32,4 +32,10 @@ public class DocumentHelper extends HelperBase{
                 "'ТЕСТ Сотников Александр Игоревич'])[2]/following::*[name()='svg'][2]"));
         click(By.id("deletebtn"));
     }
+
+    public void modificationDocument() {
+        click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)=" +
+                "'ТЕСТ Сотников Александр Игоревич'])[2]/following::*[name()='svg'][1]"));
+    }
+
 }

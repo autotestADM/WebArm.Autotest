@@ -14,4 +14,6 @@ public class NavigationHelper extends HelperBase{
 //        driver.findElement(By.xpath("//a[@href='/DTO_Info_Document/viewlist']")).click(); - другой способ поиска локатора
         click(By.linkText("Реестр документов"));
     }
+
+
 }
