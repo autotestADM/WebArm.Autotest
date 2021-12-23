@@ -8,7 +8,7 @@ public class ModificationDocument extends TestBase {
     public void testModificationDocument() {
         app.getNavigationHelper().gotoRegisterOfDocuments();
         app.getDocumentHelper().modificationDocument();
-        app.getDocumentHelper().fillDocumentForm(new DocData("Отклонения (инициативы)", "Тест2"));
+        app.getDocumentHelper().fillDocumentForm(new DocData(null, "Тест3"));
         app.getDocumentHelper().submitDocumentCreation();
     }
 }

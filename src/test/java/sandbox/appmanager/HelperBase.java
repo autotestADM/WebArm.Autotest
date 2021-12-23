@@ -18,14 +18,19 @@ public class HelperBase {
 
     protected void dropDown(By locator, String text) {
         click(locator);
-        new Select(webd.findElement(locator)).selectByVisibleText(text);
+        if (text != null) {
+            new Select(webd.findElement(locator)).selectByVisibleText(text);
+        }
     }
 
     protected void type(By locator, String text) {
         click(locator);
-        webd.findElement(locator).clear();
-        webd.findElement(locator).sendKeys(text);
+        if (text != null) {
+            webd.findElement(locator).clear();
+            webd.findElement(locator).sendKeys(text);
+        }
     }
+
     public boolean isAlertPresent() {
         try {
             webd.switchTo().alert();
