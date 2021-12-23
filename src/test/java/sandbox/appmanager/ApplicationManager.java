@@ -1,13 +1,12 @@
 package sandbox.appmanager;
 
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
 public class ApplicationManager {
-    public WebDriver webd;
+    private WebDriver webd;
     private SessionHelper sessionHelper;
     private NavigationHelper navigationHelper;
     private DocumentHelper documentHelper;
@@ -26,15 +25,6 @@ public class ApplicationManager {
 
     public void stop() {
         webd.quit();
-    }
-
-    public boolean isAlertPresent() {
-        try {
-            webd.switchTo().alert();
-            return true;
-        } catch (NoAlertPresentException e) {
-            return false;
-        }
     }
 
     public DocumentHelper getDocumentHelper() {
