@@ -11,6 +11,7 @@ public class ApplicationManager {
     private NavigationHelper navigationHelper;
     private DocumentHelper documentHelper;
 
+
     public void init() {
         System.setProperty("webdriver.chrome.driver", "tools\\chromedriver.exe");
         webd = new ChromeDriver();
@@ -21,6 +22,7 @@ public class ApplicationManager {
         sessionHelper = new SessionHelper(webd);
         sessionHelper.login("test-sotnikov", "12345");
 //        sessionHelper.chooseDB("231");
+
     }
 
     public void stop() {
@@ -38,4 +40,6 @@ public class ApplicationManager {
     public SessionHelper getSessionHelper() {
         return sessionHelper;
     }
+
+
 }
