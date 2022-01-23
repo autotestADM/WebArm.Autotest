@@ -3,7 +3,11 @@ package sandbox.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class HelperBase {
     protected WebDriver webd;
@@ -14,6 +18,11 @@ public class HelperBase {
 
     protected void click(By locator) {
         webd.findElement(locator).click();
+    }
+    protected void clickWithWait(By locator){
+        new WebDriverWait(webd, Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(locator));
+        click(locator);
     }
 
     protected void dropDown(By locator, String text) {

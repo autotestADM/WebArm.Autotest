@@ -11,8 +11,8 @@ public class NavigationHelper extends HelperBase{
 
     public void gotoRegisterOfDocuments() {
         click(By.xpath("//ul[@id='topmenu']/li[3]/span"));
-//        driver.findElement(By.xpath("//a[@href='/DTO_Info_Document/viewlist']")).click(); - другой способ поиска локатора
-        click(By.linkText("Реестр документов"));
+        clickWithWait(By.linkText("Реестр документов"));
+//        clickWithWait(By.xpath("//a[@href='/DTO_Info_Document/viewlist']"));
     }
 
 
