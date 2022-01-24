@@ -3,6 +3,7 @@ package sandbox.appmanager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.Browser;
 
 import java.time.Duration;
 
@@ -11,12 +12,21 @@ public class ApplicationManager {
     private SessionHelper sessionHelper;
     private NavigationHelper navigationHelper;
     private DocumentHelper documentHelper;
+    private String browser = "Ya";
 
+    public ApplicationManager(String browser) {
+        this.browser = browser;
+    }
+    public ApplicationManager() {
+    }
 
     public void init() {
-        System.setProperty("webdriver.chrome.driver", "tools\\chromedriver.exe");
-//        System.setProperty("webdriver.chrome.driver", "tools\\yandexdriver.exe");
-        ChromeOptions options= new ChromeOptions();
+        if (browser.equals("Ya")) {
+            System.setProperty("webdriver.chrome.driver", "tools\\yandexdriver.exe");
+        } else if (browser.equals("Chrome")) {
+            System.setProperty("webdriver.chrome.driver", "tools\\chromedriver.exe");
+        }
+        ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
         webd = new ChromeDriver(options);
         webd.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -25,7 +35,7 @@ public class ApplicationManager {
         navigationHelper = new NavigationHelper(webd);
         sessionHelper = new SessionHelper(webd);
         sessionHelper.login("test-sotnikov", "12345");
-        sessionHelper.chooseDB("244");
+        sessionHelper.chooseDB("231");
 
     }
 
