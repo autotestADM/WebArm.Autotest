@@ -5,11 +5,11 @@ public class DocData {
     String numberOfDocument;
 
 
-    public DocData withTypeOfDocument(String typeOfDocument) {
+    public DocData withType(String typeOfDocument) {
         this.typeOfDocument = typeOfDocument;
         return this;
     }
-    public DocData withNumberOfDocument(String numberOfDocument) {
+    public DocData withNumber(String numberOfDocument) {
         this.numberOfDocument = numberOfDocument;
         return this;
     }
