@@ -19,8 +19,8 @@ public class DocumentHelper extends HelperBase{
     }
 
     public void fillDocumentForm(DocData docData) {
-        type(By.id("info_document_edit_docno"), docData.numberOfDocument());
-        dropDown(By.id("info_document_edit_doctype_id"), docData.typeOfDocument());
+        type(By.id("info_document_edit_docno"), docData.getNumberOfDocument());
+        dropDown(By.id("info_document_edit_doctype_id"), docData.getTypeOfDocument());
     }
 
     public void initDocumentCreation() {
