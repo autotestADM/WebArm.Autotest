@@ -13,7 +13,8 @@ public class ApplicationManager {
 
 
     public void init() {
-        System.setProperty("webdriver.chrome.driver", "tools\\chromedriver.exe");
+//        System.setProperty("webdriver.chrome.driver", "tools\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "tools\\yandexdriver.exe");
         webd = new ChromeDriver();
         webd.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         webd.get("http://172.17.52.10/account/login?ReturnUrl=%2F");
