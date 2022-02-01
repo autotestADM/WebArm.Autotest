@@ -9,19 +9,19 @@ public class DTO_Info_Document extends TestBase {
     @Test
     public void testCreationDocument() {
         app.getNavigationHelper().gotoRegisterOfDocuments();
-        app.getDocumentHelper().initDocumentCreation();
+        app.getDocumentHelper().initCreation();
         app.getDocumentHelper().fillDocumentForm(new M_DTO_Info_Document()
                 .withType("Отклонения (инициативы)")
                 .withNumber("Тест1"));
-        app.getDocumentHelper().submitDocumentCreation();
-        app.getDocumentHelper().returnRegisterOfDocuments();
+        app.getDocumentHelper().submitCreation();
+        app.getDocumentHelper().goBack();
     }
     @Test
     public void testModificationDocument() {
         app.getNavigationHelper().gotoRegisterOfDocuments();
         app.getDocumentHelper().modificationDocument();
         app.getDocumentHelper().fillDocumentForm(new M_DTO_Info_Document().withNumber("Тест3"));
-        app.getDocumentHelper().submitDocumentCreation();
+        app.getDocumentHelper().submitCreation();
     }
     @Test
     public void testDeleteDocument() {

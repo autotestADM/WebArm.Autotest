@@ -48,4 +48,16 @@ public class HelperBase {
             return false;
         }
     }
+
+    public void initCreation() {
+        click(By.linkText("Создать"));
+    }
+
+    public void submitCreation() {
+        click(By.xpath("//button[@type ='submit']"));
+    }
+
+    public void goBack() {
+        click(By.linkText("Назад"));
+    }
 }

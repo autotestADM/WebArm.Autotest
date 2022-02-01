@@ -10,21 +10,9 @@ public class DocumentHelper extends HelperBase{
         super(webd);
     }
 
-    public void returnRegisterOfDocuments() {
-        click(By.linkText("Назад"));
-    }
-
-    public void submitDocumentCreation() {
-        click(By.xpath("//button[@type ='submit']"));
-    }
-
-    public void fillDocumentForm(M_DTO_Info_Document MDTOInfoDocument) {
-        type(By.id("info_document_edit_docno"), MDTOInfoDocument.getNumberOfDocument());
-        dropDown(By.id("info_document_edit_doctype_id"), MDTOInfoDocument.getTypeOfDocument());
-    }
-
-    public void initDocumentCreation() {
-        click(By.linkText("Создать"));
+    public void fillDocumentForm(M_DTO_Info_Document mDtoInfoDocument) {
+        type(By.id("info_document_edit_docno"), mDtoInfoDocument.getNumberOfDocument());
+        dropDown(By.id("info_document_edit_doctype_id"), mDtoInfoDocument.getTypeOfDocument());
     }
 
     public void deleteDocument() {
