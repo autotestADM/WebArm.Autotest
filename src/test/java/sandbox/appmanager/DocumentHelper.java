@@ -2,7 +2,7 @@ package sandbox.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import sandbox.model.DocData;
+import sandbox.model.M_DTO_Info_Document;
 
 public class DocumentHelper extends HelperBase{
 
@@ -18,9 +18,9 @@ public class DocumentHelper extends HelperBase{
         click(By.xpath("//button[@type ='submit']"));
     }
 
-    public void fillDocumentForm(DocData docData) {
-        type(By.id("info_document_edit_docno"), docData.getNumberOfDocument());
-        dropDown(By.id("info_document_edit_doctype_id"), docData.getTypeOfDocument());
+    public void fillDocumentForm(M_DTO_Info_Document MDTOInfoDocument) {
+        type(By.id("info_document_edit_docno"), MDTOInfoDocument.getNumberOfDocument());
+        dropDown(By.id("info_document_edit_doctype_id"), MDTOInfoDocument.getTypeOfDocument());
     }
 
     public void initDocumentCreation() {

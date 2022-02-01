@@ -1,15 +1,15 @@
 package sandbox.model;
 
-public class DocData {
+public class M_DTO_Info_Document {
     String typeOfDocument;
     String numberOfDocument;
 
 
-    public DocData withType(String typeOfDocument) {
+    public M_DTO_Info_Document withType(String typeOfDocument) {
         this.typeOfDocument = typeOfDocument;
         return this;
     }
-    public DocData withNumber(String numberOfDocument) {
+    public M_DTO_Info_Document withNumber(String numberOfDocument) {
         this.numberOfDocument = numberOfDocument;
         return this;
     }

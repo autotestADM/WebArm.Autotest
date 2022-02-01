@@ -35,7 +35,7 @@ public class ApplicationManager {
         navigationHelper = new NavigationHelper(webd);
         sessionHelper = new SessionHelper(webd);
         sessionHelper.login("test-sotnikov", "12345");
-        sessionHelper.chooseDB("231");
+        sessionHelper.chooseDB("26_MART");
 
     }
 
