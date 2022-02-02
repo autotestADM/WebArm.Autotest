@@ -11,7 +11,6 @@ public class Dict_DocSubType_Helper extends HelperBase{
         super(webd);
     }
     public void fillForm(M_Dict_DocSubType docSubType) {
-        dropDown(By.id("info_document_edit_docno"), docSubType.getType());
-        dropDown(By.id("info_document_edit_doctype_id"), docSubType.getCountry());
+        typeDrop(By.xpath("//input[@name='filter']"),docSubType.getType());
     }
 }

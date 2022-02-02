@@ -31,6 +31,11 @@ public class HelperBase {
             new Select(webd.findElement(locator)).selectByVisibleText(text);
         }
     }
+    protected void typeDrop(By locator, String text){
+        webd.findElement(locator).sendKeys(text);
+        webd.findElement(By.xpath("//label[contains(text(),'"+text+"')]")).click();
+
+    }
 
     protected void type(By locator, String text) {
         click(locator);

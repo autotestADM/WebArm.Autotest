@@ -12,12 +12,17 @@ public class ApplicationManager {
     private SessionHelper sessionHelper;
     private NavigationHelper navigationHelper;
     private DocumentHelper documentHelper;
+    private Dict_DocSubType_Helper docSubType_helper;
     private String browser = "Ya";
 
     public ApplicationManager(String browser) {
         this.browser = browser;
     }
     public ApplicationManager() {
+    }
+
+    public Dict_DocSubType_Helper getDocSubType_helper() {
+        return docSubType_helper;
     }
 
     public void init() {
@@ -33,6 +38,7 @@ public class ApplicationManager {
         webd.get("http://172.17.52.10/account/login?ReturnUrl=%2F");
         documentHelper = new DocumentHelper(webd);
         navigationHelper = new NavigationHelper(webd);
+        docSubType_helper = new Dict_DocSubType_Helper(webd);
         sessionHelper = new SessionHelper(webd);
         sessionHelper.login("test-sotnikov", "12345");
         sessionHelper.chooseDB("26_MART");
