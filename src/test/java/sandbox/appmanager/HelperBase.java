@@ -28,12 +28,12 @@ public class HelperBase {
     protected void dropDown(By locator, String text) {
         click(locator);
         if (text != null) {
-            new Select(webd.findElement(locator)).selectByVisibleText(text);
+            new Select(webd.findElement(locator)).selectByValue(text);
         }
     }
     protected void typeDrop(By locator, String text){
         webd.findElement(locator).sendKeys(text);
-        webd.findElement(By.xpath("//label[contains(text(),'"+text+"')]")).click();
+        webd.findElement(By.xpath(String.format("//label[contains(text(),'%s')]",text))).click();
 
     }
 

@@ -9,7 +9,7 @@ public class Dict_DocSubType extends TestBase {
     public void testCreation(){
         app.getNavigationHelper().gotoNSI("Подтипы документов");
         app.getDocSubType_helper().initCreation();
-        app.getDocSubType_helper().fillForm(new M_Dict_DocSubType().withType("40").withSubtype("WebDriver"));
+        app.getDocSubType_helper().fillForm(new M_Dict_DocSubType().withType("40").withSubtype("WebDriver").withTimezone("137"));
         app.getDocSubType_helper().submitCreation();
     }
 }

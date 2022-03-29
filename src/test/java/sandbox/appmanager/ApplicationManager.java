@@ -13,7 +13,7 @@ public class ApplicationManager {
     private NavigationHelper navigationHelper;
     private DocumentHelper documentHelper;
     private Dict_DocSubType_Helper docSubType_helper;
-    private String browser = "Ya";
+    private String browser = "Chrome";
 
     public ApplicationManager(String browser) {
         this.browser = browser;
