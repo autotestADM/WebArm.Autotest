@@ -13,7 +13,8 @@ public class ApplicationManager {
     private NavigationHelper navigationHelper;
     private DocumentHelper documentHelper;
     private Dict_DocSubType_Helper docSubType_helper;
-    private String browser = "Chrome";
+    private Integral_Act_Contract_Helper integralActContractHelper;
+    private String browser = "Ya";
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -23,6 +24,10 @@ public class ApplicationManager {
 
     public Dict_DocSubType_Helper getDocSubType_helper() {
         return docSubType_helper;
+    }
+
+    public Integral_Act_Contract_Helper getIntegralActContractHelper() {
+        return integralActContractHelper;
     }
 
     public void init() {
@@ -39,9 +44,10 @@ public class ApplicationManager {
         documentHelper = new DocumentHelper(webd);
         navigationHelper = new NavigationHelper(webd);
         docSubType_helper = new Dict_DocSubType_Helper(webd);
+        integralActContractHelper = new Integral_Act_Contract_Helper(webd);
         sessionHelper = new SessionHelper(webd);
         sessionHelper.login("test-sotnikov", "12345");
-        sessionHelper.chooseDB("26_MART");
+        sessionHelper.chooseDB("FOR_TESTER");
 
     }
 

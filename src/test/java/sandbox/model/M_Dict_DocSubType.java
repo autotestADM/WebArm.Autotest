@@ -5,7 +5,7 @@ public class M_Dict_DocSubType {
     String subtype;
     String timeZone;
     String side;
-    String foundation;
+    String processingMethod;
     String country;
 
     public M_Dict_DocSubType withType(String type) {
@@ -18,16 +18,16 @@ public class M_Dict_DocSubType {
         return this;
     }
 
-    public M_Dict_DocSubType withTimezone(String timeZone) {
-        this.timeZone = timeZone;
+    public M_Dict_DocSubType withTimezone(String valueOfTimeZone) {
+        this.timeZone = valueOfTimeZone;
         return this;
     }
     public M_Dict_DocSubType withSide(String side) {
         this.side = side;
         return this;
     }
-    public M_Dict_DocSubType withFoundation(String foundation) {
-        this.foundation = foundation;
+    public M_Dict_DocSubType withProcessingMethod(String valueOfProcessingMethod) {
+        this.processingMethod = valueOfProcessingMethod;
         return this;
     }
     public M_Dict_DocSubType withCountry(String country) {
@@ -51,8 +51,8 @@ public class M_Dict_DocSubType {
         return side;
     }
 
-    public String getFoundation() {
-        return foundation;
+    public String getProcessingMethod() {
+        return processingMethod;
     }
 
     public String getCountry() {
@@ -66,7 +66,7 @@ public class M_Dict_DocSubType {
                 ", subtype='" + subtype + '\'' +
                 ", timeZone='" + timeZone + '\'' +
                 ", side='" + side + '\'' +
-                ", foundation='" + foundation + '\'' +
+                ", foundation='" + processingMethod + '\'' +
                 ", country='" + country + '\'' +
                 '}';
     }
