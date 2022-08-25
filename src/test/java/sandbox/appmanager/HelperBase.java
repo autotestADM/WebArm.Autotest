@@ -64,4 +64,12 @@ public class HelperBase {
     public void goBack() {
         click(By.linkText("Назад"));
     }
+
+    public void search(String text){
+        type(By.xpath("//input[@class='filterInput']"),text);
+    }
+    public void setDate(String startdate, String finishDate){
+type(By.xpath("//input[@id='sectionaupcompare_pp_dperiodfrom']"),startdate);
+type(By.xpath("//input[@id='sectionaupcompare_pp_dperiodto']"),finishDate);
+    }
 }

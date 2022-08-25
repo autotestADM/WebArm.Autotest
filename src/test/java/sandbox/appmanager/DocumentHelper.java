@@ -12,7 +12,7 @@ public class DocumentHelper extends HelperBase{
 
     public void fillDocumentForm(M_DTO_Info_Document mDtoInfoDocument) {
         type(By.id("info_document_edit_docno"), mDtoInfoDocument.getNumberOfDocument());
-        dropDown(By.id("info_document_edit_doctype_id"), mDtoInfoDocument.getTypeOfDocument());
+        dropDown(By.xpath("//select[@name = 'doctype_id']"), mDtoInfoDocument.getTypeOfDocument());
     }
 
     public void deleteDocument() {

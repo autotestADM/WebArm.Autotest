@@ -47,7 +47,7 @@ public class ApplicationManager {
         integralActContractHelper = new Integral_Act_Contract_Helper(webd);
         sessionHelper = new SessionHelper(webd);
         sessionHelper.login("test-sotnikov", "12345");
-        sessionHelper.chooseDB("FOR_TESTER");
+        sessionHelper.chooseDB("231");
 
     }
 

@@ -18,4 +18,8 @@ public class Dict_DocSubType_Helper extends HelperBase {
             dropDown(By.xpath("//select[@name = 'documentprocessmethodid']"), docSubType.getProcessingMethod());
         }
     }
+
+    public void modificationDocument() {
+        click(By.xpath("//*[text()= 'WebDriver'][1]/following::a/i[@title='Редактировать']"));
+    }
 }

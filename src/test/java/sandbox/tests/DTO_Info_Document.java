@@ -11,7 +11,7 @@ public class DTO_Info_Document extends TestBase {
         app.getNavigationHelper().gotoRegisterOfDocuments();
         app.getDocumentHelper().initCreation();
         app.getDocumentHelper().fillDocumentForm(new M_DTO_Info_Document()
-                .withType("Отклонения (инициативы)")
+                .withType("42")
                 .withNumber("Тест1"));
         app.getDocumentHelper().submitCreation();
         app.getDocumentHelper().goBack();
