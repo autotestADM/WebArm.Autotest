@@ -3,7 +3,6 @@ package sandbox.appmanager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.Browser;
 
 import java.time.Duration;
 
@@ -16,6 +15,11 @@ public class ApplicationManager {
     private Integral_Act_Contract_Helper integralActContractHelper;
     private Aupcmp_Helper aupcmp_helper;
     private String browser = "Ya";
+
+
+    public String getPathOfTestFiles() {
+        return "D:\\Work\\IT Energy\\WebArm.Autotest\\Resources\\Testfiles";
+    }
 
     public ApplicationManager(String browser) {
         this.browser = browser;
