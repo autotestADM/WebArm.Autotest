@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<message class="51075" version="1" sender-inn="4716016979" generation-time="20220826142646" target-month="202206">
+  <organizations>
+    <organization name="ПАО &quot;ФСК ЕЭС&quot;" trader-code="FSKEESRU" />
+    <organization name="АО &quot;Татэнергосбыт&quot;" trader-code="TATENERG" />
+  </organizations>
+  <peretok code-from="FMARIENE" code-to="PTATENER" section-type="1" name="переток ПАО &quot;ФСК ЕЭС&quot; МЭС Волги (по сетям Республики Марий Эл) -- АО &quot;Татэнергосбыт&quot; (ОАО &quot;Татэнергосбыт&quot;) {FMARIENE-PTATENER}" time-zone="1">
+    <period start="202206010000" end="202206010100" value="97688">
+      <reason type="2" composition="2" />
+    </period>
+    <period start="202206010200" end="202206010300" value="98266">
+      <reason type="3" composition="1" />
+    </period>
+    <period start="202206010300" end="202206010400" value="68280">
+      <reason type="4" composition="1" />
+    </period>
+  </peretok>
+  <delivery-points>
+    <delivery-point code="162050002105201" name="ПС 220 кВ Зеленодольская, ВЛ 220 кВ Зеленодольская-Помары" aiis-code="1200001700">
+      <delivery-point-channel code="01">
+        <period start="202206010000" end="202206010100" value="0" />
+      </delivery-point-channel>
+      <delivery-point-channel code="02">
+        <period start="202206010000" end="202206010100" value="-44" />
+      </delivery-point-channel>
+    </delivery-point>
+    <delivery-point code="162050002105102" name="ПС 220 кВ Зеленодольская, ВЛ-220 кВ Зеленодольская – Волжская" aiis-code="1200001700">
+      <delivery-point-channel code="01">
+        <period start="202206010000" end="202206010100" value="97644" />
+      </delivery-point-channel>
+      <delivery-point-channel code="02">
+        <period start="202206010000" end="202206010100" value="0" />
+      </delivery-point-channel>
+    </delivery-point>
+  </delivery-points>
+</message>

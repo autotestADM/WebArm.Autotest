@@ -10,29 +10,37 @@ import java.time.Duration;
 
 public class HelperBase {
     protected WebDriver webd;
+    protected WebDriverWait wait;
 
-    public HelperBase(WebDriver webd) {
+    protected HelperBase(WebDriver webd) {
         this.webd = webd;
+        this.wait = new WebDriverWait(webd, Duration.ofSeconds(5));
+    }
+
+    protected WebDriverWait getWait() {
+        return wait;
     }
 
     protected void click(By locator) {
         webd.findElement(locator).click();
     }
-    protected void clickWithWait(By locator){
+
+    protected void clickWithWait(By locator) {
         new WebDriverWait(webd, Duration.ofSeconds(10))
                 .until(ExpectedConditions.presenceOfElementLocated(locator));
         click(locator);
     }
 
     protected void dropDown(By locator, String text) {
-        click(locator);
+//        click(locator);
         if (text != null) {
             new Select(webd.findElement(locator)).selectByValue(text);
         }
     }
-    protected void typeDrop(By locator, String text){
+
+    protected void typeDrop(By locator, String text) {
         webd.findElement(locator).sendKeys(text);
-        webd.findElement(By.xpath(String.format("//label[contains(text(),'%s')]",text))).click();
+        webd.findElement(By.xpath(String.format("//label[contains(text(),'%s')]", text))).click();
 
     }
 
@@ -44,7 +52,7 @@ public class HelperBase {
         }
     }
 
-    public boolean isAlertPresent() {
+    protected boolean isAlertPresent() {
         try {
             webd.switchTo().alert();
             return true;
@@ -65,11 +73,16 @@ public class HelperBase {
         click(By.linkText("Назад"));
     }
 
-    public void search(String text){
-        type(By.xpath("//input[@class='filterInput']"),text);
+    public void search(String text) {
+        type(By.xpath("//input[@class='filterInput']"), text);
     }
-    public void setDate(String startdate, String finishDate){
-type(By.xpath("//input[@id='sectionaupcompare_pp_dperiodfrom']"),startdate);
-type(By.xpath("//input[@id='sectionaupcompare_pp_dperiodto']"),finishDate);
+
+    public void downloadFile(String nameOfLocator, String pathOfFile) {
+        WebElement webElement = webd.findElement(By.name(nameOfLocator));
+        webElement.sendKeys(pathOfFile);
+    }
+
+    public WebDriver getWebd() {
+        return webd;
     }
 }

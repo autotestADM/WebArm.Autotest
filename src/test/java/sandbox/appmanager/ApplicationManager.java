@@ -14,11 +14,13 @@ public class ApplicationManager {
     private DocumentHelper documentHelper;
     private Dict_DocSubType_Helper docSubType_helper;
     private Integral_Act_Contract_Helper integralActContractHelper;
+    private Aupcmp_Helper aupcmp_helper;
     private String browser = "Ya";
 
     public ApplicationManager(String browser) {
         this.browser = browser;
     }
+
     public ApplicationManager() {
     }
 
@@ -30,11 +32,15 @@ public class ApplicationManager {
         return integralActContractHelper;
     }
 
+    public Aupcmp_Helper getAupcmp_helper() {
+        return aupcmp_helper;
+    }
+
     public void init() {
         if (browser.equals("Ya")) {
-            System.setProperty("webdriver.chrome.driver", "tools\\yandexdriver.exe");
+            System.setProperty("webdriver.chrome.driver", "Resources\\yandexdriver.exe");
         } else if (browser.equals("Chrome")) {
-            System.setProperty("webdriver.chrome.driver", "tools\\chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", "Resources\\chromedriver.exe");
         }
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
@@ -45,9 +51,10 @@ public class ApplicationManager {
         navigationHelper = new NavigationHelper(webd);
         docSubType_helper = new Dict_DocSubType_Helper(webd);
         integralActContractHelper = new Integral_Act_Contract_Helper(webd);
+        aupcmp_helper = new Aupcmp_Helper(webd);
         sessionHelper = new SessionHelper(webd);
         sessionHelper.login("test-sotnikov", "12345");
-        sessionHelper.chooseDB("231");
+        sessionHelper.chooseDB("235");
 
     }
 
