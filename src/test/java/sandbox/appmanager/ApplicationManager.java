@@ -18,7 +18,8 @@ public class ApplicationManager {
 
 
     public String getPathOfTestFiles() {
-        return "D:\\Work\\IT Energy\\WebArm.Autotest\\Resources\\Testfiles";
+//        return "D:\\Work\\IT Energy\\WebArm.Autotest\\Resources\\Testfiles";
+        return "C:\\dev\\GitHub\\WebArm.Autotest\\Resources\\Testfiles";
     }
 
     public ApplicationManager(String browser) {

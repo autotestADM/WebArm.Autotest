@@ -78,6 +78,7 @@ public class HelperBase {
     }
 
     public void downloadFile(String nameOfLocator, String pathOfFile) {
+        wait.until(ExpectedConditions.elementToBeClickable(By.name(nameOfLocator)));
         WebElement webElement = webd.findElement(By.name(nameOfLocator));
         webElement.sendKeys(pathOfFile);
     }

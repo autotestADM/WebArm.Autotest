@@ -11,12 +11,11 @@ public class Aupcmp extends TestBase {
 
     @Test
     public void testAvailableAllElements(){
-
     }
     @Test
-    public void testDate(){
+    public void testDownloadFiles(){
         app.getNavigationHelper().gotoReports("Формирование 51075. Сравнение 51020 и УП");
-        app.getAupcmp_helper().fillForm(new M_aupcmp().withSection("108").withStartDate("01.06.2022").withFinishDate("30.06.2022").withCheck_aup_2(true));
+        app.getAupcmp_helper().fillForm(new M_aupcmp().withStartDate("01.06.2022").withFinishDate("30.06.2022").withSection("108"));
         app.getAupcmp_helper().downloadFile(
                 "uploadfile",
                 app.getPathOfTestFiles()+"\\NewRegulations\\FMARIENE-PTATENER\\51020_202206_FMARIENE-PTATENER.xml");
