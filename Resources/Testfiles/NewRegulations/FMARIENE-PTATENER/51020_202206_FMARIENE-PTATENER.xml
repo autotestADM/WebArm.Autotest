@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="windows-1251"?>
 <message class="51020" version="1" generation-time="20210805150037">
   <organizations>
-    <organization name="ПАО &quot;ФСК ЕЭС&quot;" trader-code="FMARIENE"/>
-    <organization name="АО &quot;Интер РАО - Электрогенерация&quot;" trader-code="PTATENER"/>
+    <organization name="ПАО &quot;ФСК ЕЭС&quot;" trader-code="PTATENER"/>
+    <organization name="АО &quot;Интер РАО - Электрогенерация&quot;" trader-code="FMARIENE"/>
   </organizations>
-  <peretok code-from="FMARIENE" code-to="PTATENER" name="ПАО &quot;ФСК ЕЭС&quot; МЭС Урала - АО &quot;Интер РАО - Электрогенерация&quot; (Пермская ГРЭС)" time-zone="1">
+<!--  <peretok code-from="FMARIENE" code-to="PTATENER" name="ПАО &quot;ФСК ЕЭС&quot; МЭС Урала - АО &quot;Интер РАО - Электрогенерация&quot; (Пермская ГРЭС)" time-zone="1">-->
+  <peretok code-from="PTATENER" code-to="FMARIENE" name="ПАО &quot;ФСК ЕЭС&quot; МЭС Урала - АО &quot;Интер РАО - Электрогенерация&quot; (Пермская ГРЭС)" time-zone="1">
     <period start="202206010000" end="202206010100" value="-728150"/>
     <period start="202206010100" end="202206010200" value="-728750"/>
     <period start="202206010200" end="202206010300" value="-746210"/>

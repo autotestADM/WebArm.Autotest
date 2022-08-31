@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="windows-1251"?>
 <message class="51075" version="1" sender-inn="4716016979" generation-time="20220826142646" target-month="202206">
   <organizations>
-    <organization name="ПАО &quot;ФСК ЕЭС&quot;" trader-code="FSKEESRU" />
-    <organization name="АО &quot;Татэнергосбыт&quot;" trader-code="TATENERG" />
+    <organization name="ПАО &quot;ФСК ЕЭС&quot;" trader-code="PTATENER" />
+    <organization name="АО &quot;Татэнергосбыт&quot;" trader-code="FMARIENE" />
   </organizations>
-  <peretok code-from="FMARIENE" code-to="PTATENER" section-type="1" name="переток ПАО &quot;ФСК ЕЭС&quot; МЭС Волги (по сетям Республики Марий Эл) -- АО &quot;Татэнергосбыт&quot; (ОАО &quot;Татэнергосбыт&quot;) {FMARIENE-PTATENER}" time-zone="1">
+<!--  <peretok code-from="FMARIENE" code-to="PTATENER" section-type="1" name="переток ПАО &quot;ФСК ЕЭС&quot; МЭС Волги (по сетям Республики Марий Эл) &#45;&#45; АО &quot;Татэнергосбыт&quot; (ОАО &quot;Татэнергосбыт&quot;) {FMARIENE-PTATENER}" time-zone="1">-->
+  <peretok code-from="PTATENER" code-to="FMARIENE" section-type="1" name="переток ПАО &quot;ФСК ЕЭС&quot; МЭС Волги (по сетям Республики Марий Эл) -- АО &quot;Татэнергосбыт&quot; (ОАО &quot;Татэнергосбыт&quot;) {FMARIENE-PTATENER}" time-zone="1">
     <period start="202206010000" end="202206010100" value="97688">
       <reason type="2" composition="2" />
     </period>

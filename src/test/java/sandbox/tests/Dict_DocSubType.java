@@ -1,7 +1,6 @@
 package sandbox.tests;
 
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
 import sandbox.model.M_Dict_DocSubType;
 
 public class Dict_DocSubType extends TestBase {

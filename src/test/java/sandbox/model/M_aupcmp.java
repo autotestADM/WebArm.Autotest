@@ -4,8 +4,8 @@ package sandbox.model;
  * Сравнение 51020 | Учетного показателя и 51070 (формирование 51075)
  */
 public class M_aupcmp {
-    private String startDate;   // Для поля "Период построения отчета", стартовая дата, ДД.ММ.ГГГГ
-    private String finishDate;  // Для поля "Период построения отчета", конечная дата, ДД.ММ.ГГГГ
+//    private String startDate;   // Для поля "Период построения отчета", стартовая дата, ДД.ММ.ГГГГ
+//    private String finishDate;  // Для поля "Период построения отчета", конечная дата, ДД.ММ.ГГГГ
     private String section;     // Сечение, желательно номер сечения!
     private String aup_1;       // АУП 1, value
     private Boolean check_aup_2; //Чекбокс для расчета АУП2
@@ -14,28 +14,27 @@ public class M_aupcmp {
 
     public M_aupcmp() {
         this.aup_1="2";
-        this.aup_2="2";
         this.check_aup_2=false;
         this.profile_TP="0";
     }
 
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public M_aupcmp withStartDate(String startDate) {
-        this.startDate = startDate;
-        return this;
-    }
-
-    public String getFinishDate() {
-        return finishDate;
-    }
-
-    public M_aupcmp withFinishDate(String finishDate) {
-        this.finishDate = finishDate;
-        return this;
-    }
+//    public String getStartDate() {
+//        return startDate;
+//    }
+//
+//    public M_aupcmp withStartDate(String startDate) {
+//        this.startDate = startDate;
+//        return this;
+//    }
+//
+//    public String getFinishDate() {
+//        return finishDate;
+//    }
+//
+//    public M_aupcmp withFinishDate(String finishDate) {
+//        this.finishDate = finishDate;
+//        return this;
+//    }
 
     public String getSection() {
         return section;
@@ -55,6 +54,9 @@ public class M_aupcmp {
     }
 
     public M_aupcmp withCheck_aup_2(Boolean check_aup_2) {
+        if (check_aup_2){
+            this.aup_2="2";
+        }
         this.check_aup_2 = check_aup_2;
         return this;
     }

@@ -1,8 +1,11 @@
 package sandbox.appmanager;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
@@ -18,8 +21,8 @@ public class ApplicationManager {
 
 
     public String getPathOfTestFiles() {
-//        return "D:\\Work\\IT Energy\\WebArm.Autotest\\Resources\\Testfiles";
-        return "C:\\dev\\GitHub\\WebArm.Autotest\\Resources\\Testfiles";
+        return "D:\\Work\\IT Energy\\WebArm.Autotest\\Resources\\Testfiles";
+//        return "C:\\dev\\GitHub\\WebArm.Autotest\\Resources\\Testfiles";
     }
 
     public ApplicationManager(String browser) {
@@ -50,7 +53,7 @@ public class ApplicationManager {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
         webd = new ChromeDriver(options);
-        webd.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        webd.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         webd.get("http://172.17.52.10/account/login?ReturnUrl=%2F");
         documentHelper = new DocumentHelper(webd);
         navigationHelper = new NavigationHelper(webd);
@@ -59,6 +62,8 @@ public class ApplicationManager {
         aupcmp_helper = new Aupcmp_Helper(webd);
         sessionHelper = new SessionHelper(webd);
         sessionHelper.login("test-sotnikov", "12345");
+        new WebDriverWait(webd,Duration.ofSeconds(10)).until(
+                ExpectedConditions.presenceOfElementLocated(By.xpath("//b[normalize-space()='test-Sotnikov']")));
         sessionHelper.chooseDB("235");
 
     }
