@@ -50,7 +50,7 @@ public class Aupcmp_Helper extends HelperBase {
         LocalDate preFinishDate = preStartDate.withDayOfMonth(preStartDate.lengthOfMonth());
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
-        if (LocalDate.now().getDayOfMonth() < 20) {
+        if (today.getDayOfMonth() < 20) {
             Assert.assertEquals("Fail START date", preStartDate.format(dateTimeFormatter), startDate);
             Assert.assertEquals("Fail FINISH date", preFinishDate.format(dateTimeFormatter), finishDate);
         } else {
