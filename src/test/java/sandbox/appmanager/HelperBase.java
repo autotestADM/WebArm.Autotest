@@ -39,7 +39,9 @@ public class HelperBase {
     }
 
     protected void typeDrop(By locator, String text) {
-        webd.findElement(locator).sendKeys(text);
+        WebElement webElement = webd.findElement(locator);
+        webElement.sendKeys(text);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format("//label[contains(text(),'%s')]", text))));
         webd.findElement(By.xpath(String.format("//label[contains(text(),'%s')]", text))).click();
 
     }

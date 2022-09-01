@@ -20,7 +20,6 @@ public class Aupcmp extends TestBase {
         app.getAupcmp_helper().checkDefaultCheck_aup_2();
         app.getAupcmp_helper().checkDefaultAup2();
         app.getAupcmp_helper().checkDefaultProfile_TP();
-
     }
 
     @Test
@@ -28,9 +27,9 @@ public class Aupcmp extends TestBase {
         app.getNavigationHelper().gotoReports("Формирование 51075. Сравнение 51020 и УП");
         app.getAupcmp_helper().setDate("01.06.2022","30.06.2022");
         app.getAupcmp_helper().fillForm(new M_aupcmp().withSection("108"));
-        app.getAupcmp_helper().downloadFile(
-                "uploadfile",
-                app.getPathOfTestFiles() + "\\NewRegulations\\FMARIENE-PTATENER\\51020_202206_FMARIENE-PTATENER.xml");
+//        app.getAupcmp_helper().downloadFile(
+//                "uploadfile",
+//                app.getPathOfTestFiles() + "\\NewRegulations\\FMARIENE-PTATENER\\51020_202206_FMARIENE-PTATENER.xml");
         app.getAupcmp_helper().downloadFile(
                 "uploadfile",
                 app.getPathOfTestFiles() + "\\NewRegulations\\FMARIENE-PTATENER\\51075_4716016979_20220826142646_FMARIENE_PTATENER.xml");
@@ -38,6 +37,5 @@ public class Aupcmp extends TestBase {
                 "uploadfile",
                 app.getPathOfTestFiles() + "\\NewRegulations\\FMARIENE-PTATENER\\UP_FMARIENE_PTATENER.xls");
     }
-
 
 }
