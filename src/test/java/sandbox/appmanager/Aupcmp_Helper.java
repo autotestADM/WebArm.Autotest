@@ -8,13 +8,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import sandbox.model.M_aupcmp;
+import sandbox.tables.aupcmp.T_aupcmp;
 
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class Aupcmp_Helper extends HelperBase {
     public Aupcmp_Helper(WebDriver webd) {
@@ -43,9 +46,10 @@ public class Aupcmp_Helper extends HelperBase {
     }
 
     public void checkDefaultDate() {
-        String startDate = webd.findElement(By.xpath("//input[@id='sectionaupcompare_pp_dperiodfrom']")).getDomProperty("defaultValue");
-        String finishDate = webd.findElement(By.xpath("//input[@id='sectionaupcompare_pp_dperiodto']")).getDomProperty("defaultValue");
+        String startDate = webd.findElement(By.xpath("//input[@id='sectionaupcompare_pp_dperiodfrom']")).getDomProperty("value");
+        String finishDate = webd.findElement(By.xpath("//input[@id='sectionaupcompare_pp_dperiodto']")).getDomProperty("value");
         LocalDate today = LocalDate.now();
+        System.out.println(startDate + " " + finishDate);
         LocalDate preStartDate = today.withDayOfMonth(1).minusMonths(1);
         LocalDate preFinishDate = preStartDate.withDayOfMonth(preStartDate.lengthOfMonth());
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
@@ -87,5 +91,32 @@ public class Aupcmp_Helper extends HelperBase {
     public void checkDefaultProfile_TP() {
         WebElement element = webd.findElement(By.xpath("//select[@id='sectionaupcompare_tpprofile']"));
         Assert.assertEquals("0", element.getDomProperty("value"));
+    }
+
+    public void checkTable() {
+
+        List<WebElement> tableLine = webd.findElements(By.xpath("//table[@id='sectionaupcompare_filelist']/tbody/tr"));
+        List<WebElement> tableRow = webd.findElements(By.xpath("//table[@id='sectionaupcompare_filelist']/tbody/tr[1]/th"));
+        System.out.println("Строк: " + tableLine.size());
+        System.out.println("Столбцов: " + tableRow.size());
+        tableLine.get(1).getText();
+        List<T_aupcmp> documents = new ArrayList<>();
+
+
+        for (int i = 1; i < tableRow.size() + 1; i++) {
+            WebElement curentElement = webd.findElement(By.xpath(
+                    "//table[@id='sectionaupcompare_filelist']/tbody/tr[1]/th[" + i + "]"));
+            System.out.print(curentElement.getText() + " | ");
+        }
+        System.out.println();
+        for (int i = 2; i < tableLine.size()+1; i++) {
+            for (int j = 1; j < tableRow.size()+1; j++) {
+                WebElement curentlemrnt = webd.findElement(By.xpath(
+                        "//table[@id='sectionaupcompare_filelist']/tbody/tr[" + i + "]/td[" + j + "]"));
+                System.out.print(curentlemrnt.getText() + " | ");
+            }
+            System.out.println();
+        }
+
     }
 }

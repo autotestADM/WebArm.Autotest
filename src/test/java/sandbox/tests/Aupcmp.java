@@ -11,9 +11,10 @@ import sandbox.model.M_aupcmp;
 public class Aupcmp extends TestBase {
 
     @Test
-    public void testAvailableAllElements() {
+    public void testAvailableAllElements() throws InterruptedException {
         app.getNavigationHelper().gotoReports("Формирование 51075. Сравнение 51020 и УП");
-//        app.getAupcmp_helper().fillForm(new M_aupcmp().withSection("108"));
+        app.getAupcmp_helper().fillForm(new M_aupcmp().withSection("108").withCheck_aup_2(true));
+        app.getAupcmp_helper().setDate("01.07.2022", "20.07.2022");
         app.getAupcmp_helper().checkDefaultDate();
         app.getAupcmp_helper().checkDefaultSection();
         app.getAupcmp_helper().checkDefaultAup1();
@@ -25,7 +26,7 @@ public class Aupcmp extends TestBase {
     @Test
     public void testDownloadFiles() {
         app.getNavigationHelper().gotoReports("Формирование 51075. Сравнение 51020 и УП");
-        app.getAupcmp_helper().setDate("01.06.2022","30.06.2022");
+        app.getAupcmp_helper().setDate("01.06.2022", "30.06.2022");
         app.getAupcmp_helper().fillForm(new M_aupcmp().withSection("108"));
 //        app.getAupcmp_helper().downloadFile(
 //                "uploadfile",
@@ -38,4 +39,22 @@ public class Aupcmp extends TestBase {
                 app.getPathOfTestFiles() + "\\NewRegulations\\FMARIENE-PTATENER\\UP_FMARIENE_PTATENER.xls");
     }
 
+
+    @Test
+    public void testTable() {
+        app.getNavigationHelper().gotoReports("Формирование 51075. Сравнение 51020 и УП");
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        app.getAupcmp_helper().setDate("01.06.2022", "30.06.2022");
+        app.getAupcmp_helper().fillForm(new M_aupcmp().withSection("108"));
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        app.getAupcmp_helper().checkTable();
+    }
 }
