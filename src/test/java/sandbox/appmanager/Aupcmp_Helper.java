@@ -72,10 +72,10 @@ public class Aupcmp_Helper extends HelperBase {
         WebElement element = webd.findElement(By.xpath("//select[@id='sectionaupcompare_busrelation1']"));
         List<WebElement> elements = webd.findElements(By.xpath("//select[@name='busrelation1']/option"));
         Assert.assertEquals("2", element.getDomProperty("value"));
-        Assert.assertEquals(elements.size(),3);
-        Assert.assertEquals(elements.get(0).getText(),"Профиль АТС");
-        Assert.assertEquals(elements.get(1).getText(),"Контрольный ПСИ");
-        Assert.assertEquals(elements.get(2).getText(),"Профиль ИА");
+        Assert.assertEquals(elements.size(), 3);
+        Assert.assertEquals(elements.get(0).getText(), "Профиль АТС");
+        Assert.assertEquals(elements.get(1).getText(), "Контрольный ПСИ");
+        Assert.assertEquals(elements.get(2).getText(), "Профиль ИА");
     }
 
     public void checkDefaultAup2() {
@@ -95,7 +95,11 @@ public class Aupcmp_Helper extends HelperBase {
 
     public void checkDefaultProfile_TP() {
         WebElement element = webd.findElement(By.xpath("//select[@id='sectionaupcompare_tpprofile']"));
+        List<WebElement> elements = webd.findElements(By.xpath("//select[@name='tpprofile']/option"));
         Assert.assertEquals("0", element.getDomProperty("value"));
+        Assert.assertEquals(elements.size(), 2);
+        Assert.assertEquals(elements.get(0).getText(), "ОРЭМ");
+        Assert.assertEquals(elements.get(1).getText(), "Перспектива");
     }
 
     public List<T_aupcmp> getFileList() {
@@ -130,4 +134,12 @@ public class Aupcmp_Helper extends HelperBase {
         return webd.findElements(By.xpath("//table[@id=" + tableId + "]/tbody/tr[@tabindex='0']")).size();
     }
 
+    public Boolean checkPeriodOfReport() {
+        String startDate = webd.findElement(By.xpath("//input[@id='sectionaupcompare_pp_dperiodfrom']")).getDomProperty("value");
+        String finishDate = webd.findElement(By.xpath("//input[@id='sectionaupcompare_pp_dperiodto']")).getDomProperty("value");
+        click(By.xpath("//button[@type='submit']"));
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='periodpicker-readonly']/div")));
+        List<WebElement> period = webd.findElements(By.xpath("//div[@class='periodpicker-readonly']/div"));
+        return startDate.equals(period.get(0).getText()) && finishDate.equals(period.get(2).getText());
+    }
 }

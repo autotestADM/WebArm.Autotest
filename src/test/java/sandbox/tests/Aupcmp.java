@@ -2,13 +2,9 @@ package sandbox.tests;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import sandbox.model.M_aupcmp;
 import sandbox.tables.aupcmp.T_aupcmp;
 
-import java.time.Duration;
 import java.util.List;
 
 /**
@@ -87,6 +83,14 @@ public class Aupcmp extends TestBase {
         Assert.assertEquals("51075", fileList.get(1).getTypeOfFile());
         Assert.assertEquals("УП", fileList.get(2).getTypeOfFile());
         Assert.assertEquals(app.getAupcmp_helper().checkTableCount("'sectionaupcompare_filelist'"), fileList.size());
+    }
+
+    @Test
+    public void testPeriodOfReport() {
+        app.getNavigationHelper().gotoReports("Формирование 51075. Сравнение 51020 и УП");
+        app.getAupcmp_helper().setDate("01.06.2022", "30.06.2022");
+        app.getAupcmp_helper().fillForm(new M_aupcmp().withSection("108"));
+        Assert.assertTrue(app.getAupcmp_helper().checkPeriodOfReport());
     }
 
 }
