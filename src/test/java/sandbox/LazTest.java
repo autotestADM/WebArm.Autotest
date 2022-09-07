@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class LazTest {
+
     @Test
     public void testing() {
         LocalDate today = LocalDate.now();

@@ -29,5 +29,4 @@ public class DTO_Info_Document extends TestBase {
         app.getDocumentHelper().deleteDocument();
     }
 
-
 }

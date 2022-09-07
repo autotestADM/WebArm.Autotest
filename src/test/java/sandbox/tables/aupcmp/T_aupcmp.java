@@ -34,6 +34,18 @@ public class T_aupcmp {
         return period;
     }
 
+    @Override
+    public String toString() {
+        return "T_aupcmp{" +
+                "id='" + id + '\'' +
+                ", typeOfFile='" + typeOfFile + '\'' +
+                ", period='" + period + '\'' +
+                ", file='" + file + '\'' +
+                ", date='" + date + '\'' +
+                ", user='" + user + '\'' +
+                '}';
+    }
+
     public T_aupcmp withPeriod(String period) {
         this.period = period;
         return this;

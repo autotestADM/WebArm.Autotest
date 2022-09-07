@@ -2,21 +2,15 @@ package sandbox.appmanager;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import sandbox.model.M_aupcmp;
 import sandbox.tables.aupcmp.T_aupcmp;
 
-import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class Aupcmp_Helper extends HelperBase {
@@ -27,8 +21,14 @@ public class Aupcmp_Helper extends HelperBase {
     public void fillForm(M_aupcmp m_aupcmp) {
 
         if (m_aupcmp.getSection() != null) {
+            wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//input[@name='uploadfile']")));      // Ожидание доступности кнопким загрузки файлов - обязательно!!!
             typeDrop(By.xpath("//input[@name='filter']"), m_aupcmp.getSection());                         // Ввод сечения
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='uploadfile']")));      // Ожидание доступности кнопким загрузки файлов - обязательно!!!
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//input[@name='uploadfile']")));      // Ожидание доступности кнопким загрузки файлов - обязательно!!!
         }
         dropDown(By.xpath("//select[@name='busrelation1']"), m_aupcmp.getAup_1());
 
@@ -70,7 +70,12 @@ public class Aupcmp_Helper extends HelperBase {
 
     public void checkDefaultAup1() {
         WebElement element = webd.findElement(By.xpath("//select[@id='sectionaupcompare_busrelation1']"));
+        List<WebElement> elements = webd.findElements(By.xpath("//select[@name='busrelation1']/option"));
         Assert.assertEquals("2", element.getDomProperty("value"));
+        Assert.assertEquals(elements.size(),3);
+        Assert.assertEquals(elements.get(0).getText(),"Профиль АТС");
+        Assert.assertEquals(elements.get(1).getText(),"Контрольный ПСИ");
+        Assert.assertEquals(elements.get(2).getText(),"Профиль ИА");
     }
 
     public void checkDefaultAup2() {
@@ -93,30 +98,36 @@ public class Aupcmp_Helper extends HelperBase {
         Assert.assertEquals("0", element.getDomProperty("value"));
     }
 
-    public void checkTable() {
-
-        List<WebElement> tableLine = webd.findElements(By.xpath("//table[@id='sectionaupcompare_filelist']/tbody/tr"));
+    public List<T_aupcmp> getFileList() {
+        List<WebElement> tableLine = webd.findElements(By.xpath("//table[@id='sectionaupcompare_filelist']/tbody/tr[@tabindex='0']"));
         List<WebElement> tableRow = webd.findElements(By.xpath("//table[@id='sectionaupcompare_filelist']/tbody/tr[1]/th"));
-        System.out.println("Строк: " + tableLine.size());
-        System.out.println("Столбцов: " + tableRow.size());
-        tableLine.get(1).getText();
         List<T_aupcmp> documents = new ArrayList<>();
 
 
-        for (int i = 1; i < tableRow.size() + 1; i++) {
-            WebElement curentElement = webd.findElement(By.xpath(
-                    "//table[@id='sectionaupcompare_filelist']/tbody/tr[1]/th[" + i + "]"));
-            System.out.print(curentElement.getText() + " | ");
-        }
-        System.out.println();
-        for (int i = 2; i < tableLine.size()+1; i++) {
-            for (int j = 1; j < tableRow.size()+1; j++) {
-                WebElement curentlemrnt = webd.findElement(By.xpath(
-                        "//table[@id='sectionaupcompare_filelist']/tbody/tr[" + i + "]/td[" + j + "]"));
-                System.out.print(curentlemrnt.getText() + " | ");
+        for (int i = 1; i < tableLine.size() + 1; i++) {
+            List<WebElement> oneLine = new ArrayList<>();
+            for (int j = 1; j < tableRow.size() + 1; j++) {
+                WebElement currentElement = webd.findElement(By.xpath(
+                        "//table[@id='sectionaupcompare_filelist']/tbody/tr[@tabindex='0'][" + i + "]/td[" + j + "]"));
+                oneLine.add(currentElement);
             }
-            System.out.println();
+
+            T_aupcmp t_aupcmp = new T_aupcmp();
+            t_aupcmp.withId(oneLine.get(0).getText());
+            t_aupcmp.withTypeOfFile(oneLine.get(1).getText());
+            t_aupcmp.withPeriod(oneLine.get(2).getText());
+            t_aupcmp.withFile(oneLine.get(3).getText());
+            t_aupcmp.withDate(oneLine.get(4).getText());
+            t_aupcmp.withUser(oneLine.get(5).getText());
+            documents.add(t_aupcmp);
         }
 
+        return documents;
     }
+
+    public int checkTableCount(String tableId) {
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath("//table[@id=" + tableId + "]/tbody/tr[@tabindex='0']"), 1));
+        return webd.findElements(By.xpath("//table[@id=" + tableId + "]/tbody/tr[@tabindex='0']")).size();
+    }
+
 }

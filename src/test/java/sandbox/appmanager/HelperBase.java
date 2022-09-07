@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+
 public class HelperBase {
     protected WebDriver webd;
     protected WebDriverWait wait;
@@ -41,9 +43,8 @@ public class HelperBase {
     protected void typeDrop(By locator, String text) {
         WebElement webElement = webd.findElement(locator);
         webElement.sendKeys(text);
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format("//label[contains(text(),'%s')]", text))));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format("//label[contains(text(),'%s')]", text))));
         webd.findElement(By.xpath(String.format("//label[contains(text(),'%s')]", text))).click();
-
     }
 
     protected void type(By locator, String text) {
@@ -80,11 +81,11 @@ public class HelperBase {
     }
 
     public void downloadFile(String nameOfLocator, String pathOfFile) {
-        wait.until(ExpectedConditions.elementToBeClickable(By.name(nameOfLocator)));
+        wait.until(elementToBeClickable(By.name(nameOfLocator)));
         WebElement webElement = webd.findElement(By.name(nameOfLocator));
         webElement.sendKeys(pathOfFile);
+        wait.until(ExpectedConditions.refreshed(elementToBeClickable(By.name(nameOfLocator))));
     }
-
     public WebDriver getWebd() {
         return webd;
     }
