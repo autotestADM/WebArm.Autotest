@@ -6,6 +6,7 @@
   </organizations>
 <!--  <peretok code-from="FMARIENE" code-to="PTATENER" name="ПАО &quot;ФСК ЕЭС&quot; МЭС Урала - АО &quot;Интер РАО - Электрогенерация&quot; (Пермская ГРЭС)" time-zone="1">-->
   <peretok code-from="PTATENER" code-to="FMARIENE" name="ПАО &quot;ФСК ЕЭС&quot; МЭС Урала - АО &quot;Интер РАО - Электрогенерация&quot; (Пермская ГРЭС)" time-zone="1">
+  <!-- <peretok code-from="PTATENER" code-to="FMARIENE" name="ПАО &quot;ФСК ЕЭС&quot; МЭС Волги - АО &quot;Татэнергосбыт&quot; МЭС Волги" time-zone="1"> -->
     <period start="202206010000" end="202206010100" value="-728150"/>
     <period start="202206010100" end="202206010200" value="-728750"/>
     <period start="202206010200" end="202206010300" value="-746210"/>

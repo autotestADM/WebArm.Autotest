@@ -130,7 +130,7 @@ public class Aupcmp_Helper extends HelperBase {
     }
 
     public int checkTableCount(String tableId) {
-        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath("//table[@id=" + tableId + "]/tbody/tr[@tabindex='0']"), 1));
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath("//table[@id=" + tableId + "]/tbody/tr"), 0));
         return webd.findElements(By.xpath("//table[@id=" + tableId + "]/tbody/tr[@tabindex='0']")).size();
     }
 
@@ -141,5 +141,11 @@ public class Aupcmp_Helper extends HelperBase {
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='periodpicker-readonly']/div")));
         List<WebElement> period = webd.findElements(By.xpath("//div[@class='periodpicker-readonly']/div"));
         return startDate.equals(period.get(0).getText()) && finishDate.equals(period.get(2).getText());
+    }
+    public String getAlertText(){
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("sectionaupcompare_fileerror_form")));
+        String alertText = webd.findElement(By.id("sectionaupcompare_fileerror_body")).getText();
+        click(By.xpath("//form[@id='sectionaupcompare_fileerror_form']/div/div/div/button"));
+        return alertText;
     }
 }

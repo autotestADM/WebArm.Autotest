@@ -14,38 +14,38 @@ import java.util.List;
 public class Aupcmp extends TestBase {
 
     @Test
-    public void testAvailableAllElements() {
+    public void testDefaultDate() {
         app.getNavigationHelper().gotoReports("Формирование 51075. Сравнение 51020 и УП");
         app.getAupcmp_helper().checkDefaultDate();
     }
 
     @Test
-    public void checkDefaultSection() {
+    public void testDefaultSection() {
         app.getNavigationHelper().gotoReports("Формирование 51075. Сравнение 51020 и УП");
         app.getAupcmp_helper().checkDefaultSection();
     }
 
     @Test
-    public void checkDefaultAup1() {
+    public void testDefaultAup1() {
         app.getNavigationHelper().gotoReports("Формирование 51075. Сравнение 51020 и УП");
         app.getAupcmp_helper().checkDefaultAup1();
     }
 
 
     @Test
-    public void checkDefaultCheck_aup_2() {
+    public void testDefaultCheck_aup_2() {
         app.getNavigationHelper().gotoReports("Формирование 51075. Сравнение 51020 и УП");
         app.getAupcmp_helper().checkDefaultCheck_aup_2();
     }
 
     @Test
-    public void checkDefaultAup2() {
+    public void testDefaultAup2() {
         app.getNavigationHelper().gotoReports("Формирование 51075. Сравнение 51020 и УП");
         app.getAupcmp_helper().checkDefaultAup2();
     }
 
     @Test
-    public void checkDefaultProfile_TP() {
+    public void testDefaultProfile_TP() {
         app.getNavigationHelper().gotoReports("Формирование 51075. Сравнение 51020 и УП");
         app.getAupcmp_helper().checkDefaultProfile_TP();
     }
@@ -93,4 +93,26 @@ public class Aupcmp extends TestBase {
         Assert.assertTrue(app.getAupcmp_helper().checkPeriodOfReport());
     }
 
+    @Test
+    public void testWrongDateInFile() {
+        app.getNavigationHelper().gotoReports("Формирование 51075. Сравнение 51020 и УП");
+        app.getAupcmp_helper().setDate("01.07.2022", "30.07.2022");
+        app.getAupcmp_helper().fillForm(new M_aupcmp().withSection("108"));
+        app.getAupcmp_helper().downloadFile(
+                "uploadfile",
+                app.getPathOfTestFiles() + "\\NewRegulations\\FMARIENE-PTATENER\\51020_202206_FMARIENE-PTATENER.xml");
+        String alertText = app.getAupcmp_helper().getAlertText();
+        Assert.assertEquals("Период в файле не входит в выбранный период",alertText);
+    }
+    @Test
+    public void testWrongSectionInFile() {
+        app.getNavigationHelper().gotoReports("Формирование 51075. Сравнение 51020 и УП");
+        app.getAupcmp_helper().setDate("01.06.2022", "30.06.2022");
+        app.getAupcmp_helper().fillForm(new M_aupcmp().withSection("106"));
+        app.getAupcmp_helper().downloadFile(
+                "uploadfile",
+                app.getPathOfTestFiles() + "\\NewRegulations\\FMARIENE-PTATENER\\51020_202206_FMARIENE-PTATENER.xml");
+        String alertText = app.getAupcmp_helper().getAlertText();
+        Assert.assertEquals("Сечение в файле не соответствует Сечению, которое выбрано в поле «Сечение»",alertText);
+    }
 }
