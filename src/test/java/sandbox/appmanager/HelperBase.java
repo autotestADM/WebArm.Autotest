@@ -45,11 +45,22 @@ public class HelperBase {
         wait.until(ExpectedConditions.elementToBeClickable(locator));
         WebElement webElement = webd.findElement(locator);
         webElement.sendKeys(text);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format("//label[contains(text(),'%s')]", text))));
         webd.findElement(By.xpath(String.format("//label[contains(text(),'%s')]", text))).click();
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     protected void type(By locator, String text) {
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
         click(locator);
         if (text != null) {
             webd.findElement(locator).clear();
@@ -83,10 +94,16 @@ public class HelperBase {
     }
 
     public void downloadFile(String nameOfLocator, String pathOfFile) {
+        wait.until(ExpectedConditions.refreshed(elementToBeClickable(By.name(nameOfLocator))));
         wait.until(ExpectedConditions.elementToBeClickable(By.name(nameOfLocator)));
         WebElement webElement = webd.findElement(By.name(nameOfLocator));
         webElement.sendKeys(pathOfFile);
-        wait.until(ExpectedConditions.refreshed(elementToBeClickable(By.name(nameOfLocator))));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        wait.until(ExpectedConditions.elementToBeClickable(By.name(nameOfLocator)));
     }
     public WebDriver getWebd() {
         return webd;

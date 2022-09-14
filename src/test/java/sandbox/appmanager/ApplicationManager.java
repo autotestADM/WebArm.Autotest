@@ -54,7 +54,8 @@ public class ApplicationManager {
         options.addArguments("--start-maximized");
         webd = new ChromeDriver(options);
         webd.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-        webd.get("http://172.17.52.10/account/login?ReturnUrl=%2F");
+        webd.get("http://172.17.52.12/account/login?ReturnUrl=%2F");
+//        webd.get("http://172.17.52.10/account/login?ReturnUrl=%2F");
         documentHelper = new DocumentHelper(webd);
         navigationHelper = new NavigationHelper(webd);
         docSubType_helper = new Dict_DocSubType_Helper(webd);

@@ -22,7 +22,8 @@ public class Aupcmp_Helper extends HelperBase {
 
         if (m_aupcmp.getSection() != null) {
             wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//input[@name='uploadfile']")));      // Ожидание доступности кнопким загрузки файлов - обязательно!!!
-            typeDrop(By.xpath("//input[@name='filter']"), m_aupcmp.getSection());                         // Ввод сечения
+            typeDrop(By.name("filter"), m_aupcmp.getSection());                         // Ввод сечения
+//            typeDrop(By.xpath("//input[@name='filter']"), m_aupcmp.getSection());                         // Ввод сечения
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -30,14 +31,16 @@ public class Aupcmp_Helper extends HelperBase {
             }
             wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//input[@name='uploadfile']")));      // Ожидание доступности кнопким загрузки файлов - обязательно!!!
         }
-        dropDown(By.xpath("//select[@name='busrelation1']"), m_aupcmp.getAup_1());
-
+        if (!m_aupcmp.getAup_1().equals("2")) {
+            dropDown(By.xpath("//select[@name='busrelation1']"), m_aupcmp.getAup_1());
+        }
         if (m_aupcmp.getCheck_aup_2()) {
             click(By.name("checkrelation2"));
             dropDown(By.xpath("//select[@name='busrelation2']"), m_aupcmp.getAup_2());
         }
-
-        dropDown(By.xpath("//select[@name='tpprofile']"), m_aupcmp.getProfile_TP());
+        if (!m_aupcmp.getProfile_TP().equals("0")) {
+            dropDown(By.xpath("//select[@name='tpprofile']"), m_aupcmp.getProfile_TP());
+        }
     }
 
     public void setDate(String startDate, String finishDate) {
@@ -140,7 +143,8 @@ public class Aupcmp_Helper extends HelperBase {
         List<WebElement> period = webd.findElements(By.xpath("//div[@class='periodpicker-readonly']/div"));
         return startDate.equals(period.get(0).getText()) && finishDate.equals(period.get(2).getText());
     }
-    public String getAlertText(){
+
+    public String getAlertText() {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("sectionaupcompare_fileerror_form")));
         String alertText = webd.findElement(By.id("sectionaupcompare_fileerror_body")).getText();
         click(By.xpath("//form[@id='sectionaupcompare_fileerror_form']/div/div/div/button"));
