@@ -2,6 +2,7 @@ package sandbox.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class SessionHelper extends HelperBase{
 
@@ -21,6 +22,7 @@ public class SessionHelper extends HelperBase{
         type(By.id("username"),user);
         type(By.id("password"),password);
         click(By.id("cbrememberme"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@type='submit']")));
         click(By.xpath("//button[@type='submit']"));
     }
 }

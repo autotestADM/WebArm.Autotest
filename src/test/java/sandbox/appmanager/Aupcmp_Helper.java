@@ -107,7 +107,6 @@ public class Aupcmp_Helper extends HelperBase {
         List<WebElement> tableRow = webd.findElements(By.xpath("//table[@id='sectionaupcompare_filelist']/tbody/tr[1]/th"));
         List<T_aupcmp> documents = new ArrayList<>();
 
-
         for (int i = 1; i < tableLine.size() + 1; i++) {
             List<WebElement> oneLine = new ArrayList<>();
             for (int j = 1; j < tableRow.size() + 1; j++) {
@@ -125,7 +124,6 @@ public class Aupcmp_Helper extends HelperBase {
             t_aupcmp.withUser(oneLine.get(5).getText());
             documents.add(t_aupcmp);
         }
-
         return documents;
     }
 

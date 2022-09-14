@@ -16,7 +16,7 @@ public class HelperBase {
 
     protected HelperBase(WebDriver webd) {
         this.webd = webd;
-        this.wait = new WebDriverWait(webd, Duration.ofSeconds(5));
+        this.wait = new WebDriverWait(webd, Duration.ofSeconds(5),Duration.ofMillis(1000L));
     }
 
     protected WebDriverWait getWait() {
@@ -24,6 +24,7 @@ public class HelperBase {
     }
 
     protected void click(By locator) {
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
         webd.findElement(locator).click();
     }
 
@@ -41,6 +42,7 @@ public class HelperBase {
     }
 
     protected void typeDrop(By locator, String text) {
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
         WebElement webElement = webd.findElement(locator);
         webElement.sendKeys(text);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format("//label[contains(text(),'%s')]", text))));

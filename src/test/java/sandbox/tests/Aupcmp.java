@@ -81,7 +81,7 @@ public class Aupcmp extends TestBase {
         List<T_aupcmp> fileList = app.getAupcmp_helper().getFileList();
         Assert.assertEquals("51020", fileList.get(0).getTypeOfFile());
         Assert.assertEquals("51075", fileList.get(1).getTypeOfFile());
-        Assert.assertEquals("УП", fileList.get(2).getTypeOfFile());
+"rcgthbvtyns"        Assert.assertEquals("УП1", fileList.get(2).getTypeOfFile());
         Assert.assertEquals(app.getAupcmp_helper().checkTableCount("'sectionaupcompare_filelist'"), fileList.size());
     }
 

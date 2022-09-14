@@ -13,8 +13,6 @@ public class NavigationHelper extends HelperBase {
         super(webd);
     }
 
-    WebDriverWait webWait = new WebDriverWait(webd, Duration.ofSeconds(10));
-
     public void gotoRegisterOfDocuments() {
         click(By.xpath("//ul[@id='topmenu']/li[3]/span"));
         clickWithWait(By.linkText("Реестр документов"));
@@ -34,8 +32,11 @@ public class NavigationHelper extends HelperBase {
     public void gotoReports(String locator) {
         click(By.xpath("//ul[@id='topmenu']/li[3]/span"));
         click(By.linkText(locator));
-        wait.until(ExpectedConditions.presenceOfElementLocated(
-                By.xpath("//button[contains(text(),'Сформировать отчет по сравнению')]")));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void gotoPlans(String locator) {
