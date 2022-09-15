@@ -56,7 +56,7 @@ public class Aupcmp extends TestBase {
         app.getNavigationHelper().gotoReports("Формирование 51075. Сравнение 51020 и УП");
         app.getAupcmp_helper().setDate("01.06.2022", "30.06.2022");
         app.getAupcmp_helper().fillForm(new M_aupcmp().withSection("108"));
-        int tableCountpre = app.getAupcmp_helper().checkTableCount("'sectionaupcompare_filelist'");
+        int tableCountpre = app.getAupcmp_helper().checkTableCount("sectionaupcompare_filelist");
         app.getAupcmp_helper().downloadFile(
                 "uploadfile",
                 app.getPathOfTestFiles() + "\\NewRegulations\\FMARIENE-PTATENER\\51020_202206_FMARIENE-PTATENER.xml");
@@ -68,7 +68,7 @@ public class Aupcmp extends TestBase {
                 app.getPathOfTestFiles() + "\\NewRegulations\\FMARIENE-PTATENER\\UP_FMARIENE_PTATENER.xls");
         Thread.sleep(3000);
 //        List<T_aupcmp> fileList = app.getAupcmp_helper().getFileList();
-        int tableCountafter = app.getAupcmp_helper().checkTableCount("'sectionaupcompare_filelist'");
+        int tableCountafter = app.getAupcmp_helper().checkTableCount("sectionaupcompare_filelist");
         Assert.assertEquals(tableCountpre + 3, tableCountafter);
     }
 
@@ -82,7 +82,7 @@ public class Aupcmp extends TestBase {
         Assert.assertEquals("51020", fileList.get(0).getTypeOfFile());
         Assert.assertEquals("51075", fileList.get(1).getTypeOfFile());
         Assert.assertEquals("УП1", fileList.get(2).getTypeOfFile());
-        Assert.assertEquals(app.getAupcmp_helper().checkTableCount("'sectionaupcompare_filelist'"), fileList.size());
+        Assert.assertEquals(app.getAupcmp_helper().checkTableCount("sectionaupcompare_filelist"), fileList.size());
     }
 
     @Test
@@ -102,8 +102,9 @@ public class Aupcmp extends TestBase {
                 "uploadfile",
                 app.getPathOfTestFiles() + "\\NewRegulations\\FMARIENE-PTATENER\\51020_202206_FMARIENE-PTATENER.xml");
         String alertText = app.getAupcmp_helper().getAlertText();
-        Assert.assertEquals("Период в файле не входит в выбранный период",alertText);
+        Assert.assertEquals("Период в файле не входит в выбранный период", alertText);
     }
+
     @Test
     public void testWrongSectionInFile() {
         app.getNavigationHelper().gotoReports("Формирование 51075. Сравнение 51020 и УП");
@@ -113,6 +114,27 @@ public class Aupcmp extends TestBase {
                 "uploadfile",
                 app.getPathOfTestFiles() + "\\NewRegulations\\FMARIENE-PTATENER\\51020_202206_FMARIENE-PTATENER.xml");
         String alertText = app.getAupcmp_helper().getAlertText();
-        Assert.assertEquals("Сечение в файле не соответствует Сечению, которое выбрано в поле «Сечение»",alertText);
+        Assert.assertEquals("Сечение в файле не соответствует Сечению, которое выбрано в поле «Сечение»", alertText);
+    }
+
+    @Test
+    public void testClickCheckData() {
+        app.getNavigationHelper().gotoReports("Формирование 51075. Сравнение 51020 и УП");
+        app.getAupcmp_helper().setDate("01.06.2022", "30.06.2022");
+        app.getAupcmp_helper().fillForm(new M_aupcmp().withSection("108"));
+        app.getAupcmp_helper().clickCheckboxInTable("UP_FMARIENE_PTATENER.xls");
+    }
+
+    @Test
+    public void testDeleteFile() {
+        app.getNavigationHelper().gotoReports("Формирование 51075. Сравнение 51020 и УП");
+        app.getAupcmp_helper().setDate("01.06.2022", "30.06.2022");
+        app.getAupcmp_helper().fillForm(new M_aupcmp().withSection("108"));
+        int tableCountpre = app.getAupcmp_helper().checkTableCount("sectionaupcompare_filelist");
+        app.getAupcmp_helper().deleteFile("51020_202206_FMARIENE-PTATENER.xml");
+        app.getAupcmp_helper().deleteFile("51075_4716016979_20220826142646_FMARIENE_PTATENER");
+        app.getAupcmp_helper().deleteFile("UP_FMARIENE_PTATENER.xls");
+        int tableCountafter = app.getAupcmp_helper().checkTableCount("sectionaupcompare_filelist");
+        Assert.assertEquals(tableCountpre - 3, tableCountafter);
     }
 }

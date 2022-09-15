@@ -18,6 +18,8 @@ public class Aupcmp_Helper extends HelperBase {
         super(webd);
     }
 
+    WebElement waitDownload = webd.findElement(By.xpath("//div[@id='topmessagecontainer']/span"));
+
     public void fillForm(M_aupcmp m_aupcmp) {
 
         if (m_aupcmp.getSection() != null) {
@@ -75,10 +77,10 @@ public class Aupcmp_Helper extends HelperBase {
         WebElement element = webd.findElement(By.xpath("//select[@id='sectionaupcompare_busrelation1']"));
         List<WebElement> elements = webd.findElements(By.xpath("//select[@name='busrelation1']/option"));
         Assert.assertEquals("2", element.getDomProperty("value"));
-        Assert.assertEquals(elements.size(), 3);
-        Assert.assertEquals(elements.get(0).getText(), "Профиль АТС");
-        Assert.assertEquals(elements.get(1).getText(), "Контрольный ПСИ");
-        Assert.assertEquals(elements.get(2).getText(), "Профиль ИА");
+        Assert.assertEquals(3, elements.size());
+        Assert.assertEquals("Профиль АТС - расчет по ТИ, закодированным ФСК", elements.get(0).getText());
+        Assert.assertEquals("Контрольный - расчет по РИП согласно НСИ (при отсутствии РИП берутся данные ОИП)", elements.get(1).getText());
+        Assert.assertEquals("Профиль ИА - расчет по ОИП вне зависимости от их принадлежности", elements.get(2).getText());
     }
 
     public void checkDefaultAup2() {
@@ -100,9 +102,9 @@ public class Aupcmp_Helper extends HelperBase {
         WebElement element = webd.findElement(By.xpath("//select[@id='sectionaupcompare_tpprofile']"));
         List<WebElement> elements = webd.findElements(By.xpath("//select[@name='tpprofile']/option"));
         Assert.assertEquals("0", element.getDomProperty("value"));
-        Assert.assertEquals(elements.size(), 2);
-        Assert.assertEquals(elements.get(0).getText(), "ОРЭМ");
-        Assert.assertEquals(elements.get(1).getText(), "Перспектива");
+        Assert.assertEquals(2, elements.size());
+        Assert.assertEquals("ОРЭМ - по действующим точкам подставки на ОРЭМ", elements.get(0).getText());
+        Assert.assertEquals("Перспектива - по перспективным точкам подставкам на ОРЭМ", elements.get(1).getText());
     }
 
     public List<T_aupcmp> getFileList() {
@@ -131,8 +133,8 @@ public class Aupcmp_Helper extends HelperBase {
     }
 
     public int checkTableCount(String tableId) {
-        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath("//table[@id=" + tableId + "]/tbody/tr"), 0));
-        return webd.findElements(By.xpath("//table[@id=" + tableId + "]/tbody/tr[@tabindex='0']")).size();
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//table[@id=" +"'"+ tableId +"'"+ "]/tbody/tr")));
+        return webd.findElements(By.xpath("//table[@id="+"'" + tableId +"'"+ "]/tbody/tr[@tabindex='0']")).size();
     }
 
     public Boolean checkPeriodOfReport() {
@@ -149,5 +151,24 @@ public class Aupcmp_Helper extends HelperBase {
         String alertText = webd.findElement(By.id("sectionaupcompare_fileerror_body")).getText();
         click(By.xpath("//form[@id='sectionaupcompare_fileerror_form']/div/div/div/button"));
         return alertText;
+
+    }
+
+    public void clickCheckboxInTable(String nameOfFile) {
+        click(By.xpath("//table[@id='sectionaupcompare_filelist']//td[contains(text()," + "'" + nameOfFile + "'" + ")]/following-sibling::td/i"));
+    }
+
+    public void deleteFile(String nameOfFile) {
+        click(By.xpath("//table[@id='sectionaupcompare_filelist']//td[contains(text()," + "'" + nameOfFile + "'" + ")]/following-sibling::td/*/i[@title='Удалить']"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("sectionaupcompare_filelist_delete_form")));
+        click(By.xpath("//button[contains(text(),'Удалить')]"));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(
+                By.xpath("//table[@id='sectionaupcompare_filelist']//td[contains(text()," + "'" + nameOfFile + "'" + ")]/following-sibling::td/*/i[@title='Удалить']")));
+
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 }
