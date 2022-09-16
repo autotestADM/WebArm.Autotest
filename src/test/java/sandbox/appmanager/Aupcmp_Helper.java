@@ -25,7 +25,6 @@ public class Aupcmp_Helper extends HelperBase {
         if (m_aupcmp.getSection() != null) {
             wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//input[@name='uploadfile']")));      // Ожидание доступности кнопким загрузки файлов - обязательно!!!
             typeDrop(By.name("filter"), m_aupcmp.getSection());                         // Ввод сечения
-//            typeDrop(By.xpath("//input[@name='filter']"), m_aupcmp.getSection());                         // Ввод сечения
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -69,7 +68,9 @@ public class Aupcmp_Helper extends HelperBase {
     }
 
     public void checkDefaultSection() {
-        WebElement element = webd.findElement(By.xpath("//div[@id='sectionaupcompare_section_id_selected']/*/span"));
+        By locatorSection = By.xpath("//div[@id='sectionaupcompare_section_id_selected']/*/span");
+        wait.until(ExpectedConditions.presenceOfElementLocated(locatorSection));
+        WebElement element = webd.findElement(locatorSection);
         Assert.assertEquals("", element.getDomProperty("innerText"));
     }
 

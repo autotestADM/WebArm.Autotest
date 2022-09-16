@@ -32,11 +32,7 @@ public class NavigationHelper extends HelperBase {
     public void gotoReports(String locator) {
         click(By.xpath("//ul[@id='topmenu']/li[3]/span"));
         click(By.linkText(locator));
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
     public void gotoPlans(String locator) {
